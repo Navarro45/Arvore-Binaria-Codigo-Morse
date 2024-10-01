@@ -32,21 +32,28 @@ public class Arvore {
         atual.setInformacao(caracter);
     }
 
-    public String buscar(String morse){
+    public String[] buscar(String morse){
         No atual = this.raiz;
-        String[] simbolos = morse.split(" ");
-        for (String simbolo:simbolos){
-            if (Objects.equals(simbolo, ".")) {
-                atual=atual.getEsquerda();
+        String[] codigos = morse.split("/");
+        String[] resposta= new String[codigos.length];
+        int i =0;
+        for (String codigo:codigos) {
+            String[] simbolos = codigo.split(" ");
+            for (String simbolo : simbolos) {
+                if (Objects.equals(simbolo, ".")) {
+                    atual = atual.getEsquerda();
+                } else if (Objects.equals(simbolo, "-")) {
+                    atual = atual.getDireita();
+                }
+                if (atual == null) {
+                    resposta[i]=null;
+                    return resposta;
+                }
             }
-            else if (Objects.equals(simbolo, "-")){
-                atual=atual.getDireita();
-            }
-            if (atual==null){
-                return null;
-            }
+            resposta[i] = atual.getInformacao();
+            i++;
         }
-        return atual.getInformacao();
+        return resposta.;
     }
 
 
