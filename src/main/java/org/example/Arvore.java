@@ -14,7 +14,7 @@ public class Arvore {
 
     public void inserir(String codigo,String caracter){
         No atual = this.raiz;
-        String[] simbolos = codigo.split(" ");;
+        String[] simbolos = codigo.split(" ");
         for (String simbolo : simbolos) {
             if (Objects.equals(simbolo, ".")) {
                 if (atual.getEsquerda()==null){
@@ -34,7 +34,7 @@ public class Arvore {
 
     public String buscar(String morse){
         No atual = this.raiz;
-        String[] simbolos = morse.split(" ");;
+        String[] simbolos = morse.split(" ");
         for (String simbolo:simbolos){
             if (Objects.equals(simbolo, ".")) {
                 atual=atual.getEsquerda();
