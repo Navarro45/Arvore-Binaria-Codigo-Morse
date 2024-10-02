@@ -48,6 +48,7 @@ public class Arvore {
                 return null;
             }
         }
+        System.out.println(atual.getInformacao());
         return atual.getInformacao();
     }
 
