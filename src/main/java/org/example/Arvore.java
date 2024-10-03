@@ -55,7 +55,7 @@ public class Arvore {
     }
 
     public void menu() {
-        Boolean loop = true;
+        boolean loop = true;
         Scanner entrada = new Scanner(System.in);
 
         while (loop) {
