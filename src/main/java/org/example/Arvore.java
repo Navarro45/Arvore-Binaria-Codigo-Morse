@@ -80,6 +80,7 @@ public class Arvore {
 
                     case 3:
                         System.out.println("Utilize espaço entre os símbolos do código.");
+                        System.out.println("Para palavras use / entre cada letra.");
                         System.out.println("Digite a letra desejada em código morse:");
                         String morse = entrada.nextLine();
                         this.buscar(morse);
