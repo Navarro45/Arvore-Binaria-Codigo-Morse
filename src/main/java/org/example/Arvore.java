@@ -1,5 +1,6 @@
 package org.example;
 
+import java.util.InputMismatchException;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -34,57 +35,52 @@ public class Arvore {
     }
 
     public String buscar(String morse){
-        String[] codigos = morse.split("/");
-        StringBuilder resultado = new StringBuilder();
-        for (String codigo:codigos) {
-            No atual = this.raiz;
-            String[] simbolos = codigo.split(" ");
-            for (String simbolo : simbolos) {
-                if (Objects.equals(simbolo, ".")) {
-                    atual = atual.getEsquerda();
-                } else if (Objects.equals(simbolo, "-")) {
-                    atual = atual.getDireita();
-                }
-                if (atual == null) {
-                    return resultado.toString();
-                }
+        No atual = this.raiz;
+        String[] simbolos = morse.split(" ");
+        for (String simbolo:simbolos){
+            if (Objects.equals(simbolo, ".")) {
+                atual=atual.getEsquerda();
             }
-            resultado.append(atual.getInformacao());
+            else if (Objects.equals(simbolo, "-")){
+                atual=atual.getDireita();
+            }
+            if (atual==null){
+                return null;
+            }
         }
-        return resultado.toString();
+        System.out.println(atual.getInformacao());
+        return atual.getInformacao();
     }
 
     public void menu() {
-        boolean loop = true;
+        Boolean loop = true;
         Scanner entrada = new Scanner(System.in);
 
         while (loop) {
             try {
-                System.out.println("---Bem-vindo à árvore do morse---");
+                System.out.println("Bem-vindo à árvore do morse");
                 System.out.println("Para inserir uma letra, digite 1 ");
                 // System.out.println("Para remover uma letra digite 2");
                 System.out.println("Para buscar uma letra, digite 3");
                 System.out.println("Para encerrar o programa, digite 9");
-                System.out.print("Sua Escolha: ");
                 int escolha = entrada.nextInt();
                 entrada.nextLine();  // Limpar o buffer após a leitura de números
 
                 switch (escolha) {
                     case 1:
                         System.out.println("Utilize espaço entre os símbolos do código.");
-                        System.out.print("->Digite a letra desejada em código morse: ");
+                        System.out.println("Digite a letra desejada em código morse:");
                         String codigo = entrada.nextLine();
-                        System.out.print("->Insira a letra que o código inserido representa: ");
+                        System.out.println("Insira a letra que o código inserido representa:");
                         String caracter = entrada.nextLine();
                         this.inserir(codigo, caracter);
                         break;
 
                     case 3:
                         System.out.println("Utilize espaço entre os símbolos do código.");
-                        System.out.println("Para palavras use / entre cada letra.");
-                        System.out.println("->Digite a letra desejada em código morse:");
+                        System.out.println("Digite a letra desejada em código morse:");
                         String morse = entrada.nextLine();
-                        System.out.println("->Tradução : "+this.buscar(morse));
+                        this.buscar(morse);
                         break;
 
                     case 9:
@@ -98,11 +94,10 @@ public class Arvore {
                         break;
                 }
             } catch (Exception e) {
+                // Tratamento de outros erros inesperados
                 System.out.println("Ocorreu um erro: " + e.getMessage());
-                break;
             }
         }
         entrada.close(); // Fechar o scanner ao sair do loop
     }
-
 }

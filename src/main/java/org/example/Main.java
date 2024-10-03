@@ -5,5 +5,14 @@ public class Main {
         Arvore tree = new Arvore();
         tree.iniciaizar();
         tree.menu();
+
+
+        //tree.inserir(". . .", "s");
+        //tree.inserir("- - -", "o");
+
+        //System.out.println(tree.buscar(" . . ."));
+        //System.out.println(tree.buscar(" - - -"));
+        //System.out.println(tree.buscar(" . . ."));
+        //System.out.println(tree.buscar(". . . - - - . . ."));
     }
 }
